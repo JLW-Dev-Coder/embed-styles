@@ -1,56 +1,45 @@
 /* =========================================================
-   LENTAX SHARED STYLESHEET
+   VA AGENCY SETUP TEMPLATE — EMBED STYLES
+   File: assets/css/asset.css
    Scope: request.lentax.co embeds via WH.Site
-   Namespace: lx-
    ========================================================= */
 
-/* ---------- Base ---------- */
+/* ---------- Base / Reset ---------- */
 .lx-wrap,
 .lx-wrap * {
   box-sizing: border-box;
   font-family: 'Raleway', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* ---------- Headings ---------- */
-.lx-heading-primary {
-  background: linear-gradient(
-    90deg,
-    #FFD700,
-    #FFA500,
-    #FFD700
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.1;
+body {
+  margin: 0;
+}
+
+/* ---------- Containers ---------- */
+.lx-container {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.lx-center {
   text-align: center;
 }
 
-.lx-heading-primary:hover {
-  background: linear-gradient(
-    90deg,
-    #FFD700,
-    #00ff00,
-    #FFD700
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.lx-muted {
+  opacity: 0.85;
 }
 
-.lx-heading-secondary {
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #e5e7eb,
-    #ffffff
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 500;
-  text-align: center;
+/* ---------- Top Navigation (Buttons Row) ---------- */
+.lx-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px auto 0;
+  max-width: 1100px;
+  padding: 0 20px;
+  width: 100%;
 }
 
 /* ---------- CTA Buttons ---------- */
@@ -65,10 +54,12 @@
   font-size: 15px;
   font-weight: 700;
   gap: 6px;
+  justify-content: center;
   padding: 10px 22px;
   text-decoration: none;
   text-transform: uppercase;
-  transition: transform .2s ease, filter .2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  white-space: nowrap;
 }
 
 .lx-btn-cta:hover {
@@ -76,7 +67,51 @@
   transform: translateY(-2px);
 }
 
-/* ---------- Hero Sailing Wheel ---------- */
+/* ---------- Primary Heading (Gold Gradient) ---------- */
+.lx-heading-primary {
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #ffa500,
+    #ffd700
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.lx-heading-primary:hover {
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #00ff00,
+    #ffd700
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------- Secondary Heading (White Gradient) ---------- */
+.lx-heading-secondary {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #e5e7eb,
+    #ffffff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* ---------- Hero Steering Wheel ---------- */
 .lx-hero-wheel {
   align-items: center;
   background: radial-gradient(circle at center, #1a1a1a 0%, #000 55%);
@@ -84,8 +119,8 @@
   border-radius: 50%;
   box-shadow:
     inset 0 0 0 6px #9fa4a8,
-    inset 0 0 25px rgba(255,255,255,0.25),
-    0 18px 45px rgba(0,0,0,0.55);
+    inset 0 0 25px rgba(255, 255, 255, 0.25),
+    0 18px 45px rgba(0, 0, 0, 0.55);
   display: flex;
   height: 360px;
   justify-content: center;
@@ -95,31 +130,35 @@
   width: 360px;
 }
 
+/* Wheel spokes */
 .lx-hero-wheel::before,
 .lx-hero-wheel::after {
   content: "";
-  inset: -14px;
   position: absolute;
+  inset: -14px;
   border-radius: 50%;
   background:
     repeating-conic-gradient(
       from 0deg,
       transparent 0deg 20deg,
-      rgba(255,255,255,0.85) 20deg 22deg
+      rgba(255, 255, 255, 0.85) 20deg 22deg
     );
   mask: radial-gradient(circle, transparent 58%, black 60%);
 }
 
-/* ---------- Utility ---------- */
-.lx-center {
-  text-align: center;
-}
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .lx-hero-wheel {
+    height: 280px;
+    width: 280px;
+    padding: 20px;
+  }
 
-.lx-max-1100 {
-  margin: 0 auto;
-  max-width: 1100px;
-}
+  .lx-heading-primary {
+    font-size: 38px;
+  }
 
-.lx-muted {
-  opacity: 0.85;
+  .lx-heading-secondary {
+    font-size: 20px;
+  }
 }
