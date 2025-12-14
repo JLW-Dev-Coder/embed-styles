@@ -4,4 +4,4 @@
 [[headers]]
   for = "/assets/*"
   [headers.values]
-    Cache-Control = "no-cache"
+    Cache-Control = "public, max-age=86400"
