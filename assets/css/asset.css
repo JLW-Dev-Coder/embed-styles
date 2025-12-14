@@ -4,6 +4,25 @@ body,
 }
 
 /* ==========================================================
+   NAV
+   ========================================================== */
+.lx-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px auto 22px auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.lx-nav a[aria-current="page"] {
+  filter: brightness(1.05);
+  outline: 2px solid rgba(255, 179, 0, 0.45);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
    MODERN VIEW TRANSITIONS
    ========================================================== */
 .view-section {
@@ -19,7 +38,7 @@ body,
 }
 
 .view-section.is-active {
-  max-height: 3500px;
+  max-height: 12000px;
   opacity: 1;
   overflow: visible;
   transform: translateY(0px);
@@ -37,7 +56,8 @@ body,
 .model-tabs {
   border-bottom: 1px solid #333;
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
   margin: 10px auto 18px auto;
   max-width: 900px;
@@ -85,6 +105,14 @@ body,
   to { opacity: 1; transform: translateY(0); }
 }
 
+.model-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
 .model-items {
   margin: 20px 0;
   text-align: left;
@@ -94,17 +122,6 @@ body,
   font-size: 20px;
   line-height: 1.45;
   margin-bottom: 14px;
-}
-
-.model-title {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.model-subtitle {
-  font-size: 18px;
-  margin-bottom: 20px;
 }
 
 .model-next-btn {
@@ -125,12 +142,15 @@ body,
   transform: translateY(-2px);
 }
 
-.model-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 24px;
+.model-subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.model-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 /* ==========================================================
@@ -192,19 +212,100 @@ body,
 
 .template-layout {
   align-items: flex-start;
-  display: flex;
-  gap: 24px;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
   margin-top: 8px;
 }
 
+@media (min-width: 920px) {
+  .template-layout {
+    grid-template-columns: 260px 1fr;
+  }
+}
+
 .template-tabs {
-  border-right: 1px solid #333;
+  border: 1px solid #333;
+  border-radius: 14px;
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+}
+
+.template-tab {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid #333;
+  border-radius: 12px;
+  color: #d1d5db;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 10px 12px;
+  text-align: left;
+  transition: .2s ease;
+}
+
+.template-tab:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.template-tab.active {
+  background: rgba(255, 179, 0, 0.10);
+  border-color: rgba(255, 179, 0, 0.60);
+  color: #ffb300;
+}
+
+.template-panels {
+  border: 1px solid #333;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.template-panel {
+  display: none;
+}
+
+.template-panel.active {
+  display: block;
+}
+
+.template-bottom-cta {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 220px;
-  padding-right: 10px;
-  width: 260px;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Business sector mini grid (inside Template Map panel) */
+.sector-extra {
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.sector-extra.visible {
+  opacity: 1;
+}
+
+.sector-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr;
+  margin-top: 12px;
+}
+
+@media (min-width: 860px) {
+  .sector-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.sector-col {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  border-radius: 14px;
+  padding: 12px;
 }
 
 /* ==========================================================
@@ -240,8 +341,332 @@ body,
 
 /* ==========================================================
    DOCUMENT GENERATORS (MG)
-   Moved from inline <style> to global CSS
    ========================================================== */
-/* Paste your full MG CSS block here (the one that was inline).
-   If you want, paste your current lentax.css file contents and I will merge it
-   with the MG block and keep it consistent. */
+.mg {
+  --c-blue-depth: hsl(236 54% 36%);
+  --c-blue-mid: hsl(233 63% 46%);
+  --c-card: hsl(0 0% 100%);
+  --c-cardBorder: hsl(226 24% 90%);
+  --c-darkPanel: hsl(235 56% 16%);
+  --c-darkPanel2: hsl(236 49% 19%);
+  --c-focus: hsl(45 92% 54%);
+  --c-ink: hsl(223 28% 16%);
+  --c-inkSoft: hsl(223 12% 40%);
+  --c-input: hsl(225 24% 96%);
+  --c-inputBorder: hsl(226 20% 86%);
+  --c-toggleOff: hsl(226 16% 74%);
+  --c-toggleOn: hsl(260 72% 62%);
+  --radius: 14px;
+  --shadow: 0 14px 36px hsl(225 45% 10% / 0.22);
+  background: radial-gradient(1200px 520px at 18% 8%, hsl(260 70% 60% / 0.35) 0%, transparent 55%),
+              linear-gradient(180deg, var(--c-blue-mid) 0%, var(--c-blue-depth) 100%);
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 18px 18px 26px 18px;
+}
+
+.mg__action {
+  align-items: center;
+  background: var(--c-card);
+  border: 1px solid var(--c-cardBorder);
+  border-radius: 12px;
+  box-shadow: 0 10px 22px hsl(225 45% 10% / 0.08);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 14px;
+  text-align: left;
+  width: 100%;
+}
+
+.mg__action:active {
+  transform: translateY(1px);
+}
+
+.mg__action:focus-visible {
+  outline: 3px solid hsl(45 92% 54% / 0.55);
+  outline-offset: 2px;
+}
+
+.mg__actionIcon {
+  color: hsl(230 40% 35%);
+  height: 20px;
+  width: 20px;
+}
+
+.mg__actionLeft {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.mg__actionText {
+  color: hsl(230 18% 22%);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.mg__addon {
+  align-items: center;
+  background: var(--c-input);
+  border: 1px solid var(--c-inputBorder);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  color: hsl(230 18% 28%);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  min-width: 46px;
+  padding: 12px 10px;
+}
+
+.mg__addon:focus-visible {
+  outline: 3px solid hsl(45 92% 54% / 0.55);
+  outline-offset: 2px;
+}
+
+.mg__back {
+  align-items: center;
+  background: hsl(0 0% 100% / 0.14);
+  border: 1px solid hsl(0 0% 100% / 0.22);
+  border-radius: 10px;
+  color: hsl(0 0% 100%);
+  cursor: pointer;
+  display: inline-flex;
+  height: 42px;
+  justify-content: center;
+  width: 42px;
+}
+
+.mg__back:focus-visible {
+  outline: 3px solid hsl(45 92% 54% / 0.55);
+  outline-offset: 2px;
+}
+
+.mg__card {
+  background: var(--c-card);
+  border: 1px solid var(--c-cardBorder);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 18px;
+}
+
+.mg__cardHeading {
+  color: hsl(230 18% 22%);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.mg__cardSub {
+  color: var(--c-inkSoft);
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.mg__chev {
+  color: hsl(230 16% 45%);
+  height: 18px;
+  pointer-events: none;
+  width: 18px;
+}
+
+.mg__chev--right {
+  height: 20px;
+  width: 20px;
+}
+
+.mg__formRow {
+  display: grid;
+  gap: 8px;
+}
+
+.mg__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+  margin-top: 14px;
+}
+
+.mg__help {
+  color: var(--c-inkSoft);
+  font-size: 12px;
+}
+
+.mg__icon {
+  height: 22px;
+  width: 22px;
+}
+
+.mg__input {
+  background: var(--c-input);
+  border: 1px solid var(--c-inputBorder);
+  border-radius: 10px;
+  color: var(--c-ink);
+  font-size: 14px;
+  padding: 12px 12px;
+  width: 100%;
+}
+
+.mg__input:focus {
+  border-color: hsl(260 70% 60% / 0.65);
+  box-shadow: 0 0 0 4px hsl(260 70% 60% / 0.18);
+  outline: none;
+}
+
+.mg__input--group {
+  border-radius: 10px 0 0 10px;
+}
+
+.mg__inputGroup {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.mg__label {
+  color: hsl(230 18% 24%);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mg__left {
+  display: grid;
+  gap: 14px;
+}
+
+.mg__note {
+  color: var(--c-inkSoft);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.mg__panel {
+  background: linear-gradient(180deg, var(--c-darkPanel) 0%, var(--c-darkPanel2) 100%);
+  border: 1px solid hsl(0 0% 100% / 0.10);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 48px hsl(235 52% 10% / 0.35);
+  padding: 18px 18px;
+}
+
+.mg__panelSub {
+  color: hsl(0 0% 100% / 0.75);
+  font-size: 13px;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+
+.mg__panelTitle {
+  color: hsl(0 0% 100%);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.mg__req {
+  color: hsl(14 78% 54%);
+  margin-left: 4px;
+}
+
+.mg__right {
+  display: grid;
+  gap: 14px;
+}
+
+.mg__select {
+  appearance: none;
+  background: var(--c-input);
+  border: 1px solid var(--c-inputBorder);
+  border-radius: 10px;
+  color: var(--c-ink);
+  font-size: 14px;
+  padding: 12px 40px 12px 12px;
+  width: 100%;
+}
+
+.mg__select:focus {
+  border-color: hsl(260 70% 60% / 0.65);
+  box-shadow: 0 0 0 4px hsl(260 70% 60% / 0.18);
+  outline: none;
+}
+
+.mg__selectWrap {
+  align-items: center;
+  display: grid;
+  position: relative;
+}
+
+.mg__selectWrap .mg__chev {
+  position: absolute;
+  right: 12px;
+}
+
+.mg__title {
+  color: hsl(0 0% 100%);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.mg__toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.mg__toggle:focus-visible {
+  outline: 3px solid hsl(45 92% 54% / 0.55);
+  outline-offset: 3px;
+}
+
+.mg__toggleRow {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto 1fr;
+  margin-top: 12px;
+}
+
+.mg__toggleText {
+  color: var(--c-inkSoft);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mg__toggleThumb {
+  background: hsl(0 0% 100%);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px hsl(225 45% 10% / 0.22);
+  height: 18px;
+  left: 3px;
+  position: absolute;
+  top: 3px;
+  transform: translateX(0);
+  width: 18px;
+}
+
+.mg__toggleTrack {
+  background: var(--c-toggleOff);
+  border-radius: 999px;
+  display: inline-block;
+  height: 24px;
+  position: relative;
+  width: 46px;
+}
+
+.mg__topbar {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: auto 1fr;
+  padding: 6px 4px 0 4px;
+}
+
+@media (min-width: 980px) {
+  .mg__grid {
+    align-items: start;
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
