@@ -3,17 +3,87 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lentax Assets Test</title>
+  <title>Lentax — VA Agency Template</title>
 
-  <link rel="stylesheet" href="assets/css/lentax.css" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script defer src="assets/js/lentax.js"></script>
+  <link rel="stylesheet" href="/assets/css/asset.css">
+  <script defer src="/assets/js/lentax.js"></script>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (!params.get("view")) {
+        params.set("view", "va-agency-template");
+        const next = window.location.pathname + "?" + params.toString();
+        window.location.replace(next);
+      }
+    })();
+  </script>
 </head>
+<body>
+  <main class="lx-wrap">
+    <section class="lx-hero">
+      <h1>Your VA Agency Template</h1>
+      <h2>Choose a section below.</h2>
 
-<body style="background:#0b1020;color:#fff;padding:40px;">
-  <div class="lx-wrap lx-max-1100 lx-center">
-    <h1 class="lx-heading-primary" style="font-size:50px;">
-      Lentax Assets Loaded
-    </h1>
+      <nav class="lx-nav" data-lx-nav="1" aria-label="Template sections">
+        <a data-view="business-sectors" href="/?view=business-sectors">Business Sectors</a>
+        <a data-view="document-generators" href="/?view=document-generators">Document Generators</a>
+        <a data-view="reseller-modules" href="/?view=reseller-modules">Reseller Modules</a>
+        <a data-view="va-agency-template" href="/?view=va-agency-template">VA Agency Template</a>
+      </nav>
+    </section>
 
-    <h2 class="lx-heading-secondary" style
+    <section class="lx-panel" id="lxContent" aria-live="polite"></section>
+  </main>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const view = (params.get("view") || "va-agency-template").trim();
+
+      const content = document.getElementById("lxContent");
+
+      const views = {
+        "business-sectors": `
+          <h3>Business Sectors</h3>
+          <p>Section scaffold. Replace with your Business Sectors overview and links.</p>
+          <p><a href="https://secure.lentax.co/portal/dashboard/view/157420" target="_blank" rel="noopener">Open Business Sectors</a></p>
+        `,
+        "document-generators": `
+          <h3>Document Generators</h3>
+          <p>Section scaffold. Replace with your Doc Generator naming and contracts.</p>
+        `,
+        "reseller-modules": `
+          <h3>Reseller Modules</h3>
+          <p>Section scaffold. Replace with your summary table.</p>
+          <table class="lx-table" aria-label="Reseller modules table">
+            <thead>
+              <tr>
+                <th>Module</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Announcements</td>
+                <td>Client-facing updates and notices.</td>
+              </tr>
+              <tr>
+                <td>Appointments</td>
+                <td>Booking flows for sales, support, and tours.</td>
+              </tr>
+            </tbody>
+          </table>
+        `,
+        "va-agency-template": `
+          <h3>VA Agency Template</h3>
+          <p>Section scaffold. Replace with your main overview, CTA, and tour entry points.</p>
+        `
+      };
+
+      content.innerHTML = views[view] || views["va-agency-template"];
+    })();
+  </script>
+</body>
+</html>
