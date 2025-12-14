@@ -1,139 +1,247 @@
-/* ------------------------------
-   BASE
------------------------------- */
-
-:root {
-  --lx-bg: #020818;
-  --lx-card: rgba(255, 255, 255, 0.06);
-  --lx-gold: #ffb300;
-  --lx-ink: #ffffff;
-  --lx-muted: rgba(255, 255, 255, 0.75);
-  --lx-stroke: rgba(255, 255, 255, 0.14);
-  --lx-wrap: 1100px;
-}
-
+body,
 * {
-  box-sizing: border-box;
+  font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
-body {
-  background: var(--lx-bg);
-  color: var(--lx-ink);
-  font-family: Raleway, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+/* ==========================================================
+   MODERN VIEW TRANSITIONS
+   ========================================================== */
+.view-section {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(18px);
+  transition:
+    opacity 0.40s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.40s cubic-bezier(0.16, 1, 0.3, 1),
+    max-height 0.40s ease;
+  will-change: opacity, transform, max-height;
 }
 
-a {
-  color: var(--lx-gold);
-  text-decoration: none;
+.view-section.is-active {
+  max-height: 3500px;
+  opacity: 1;
+  overflow: visible;
+  transform: translateY(0px);
 }
 
-a:hover {
-  text-decoration: underline;
+.view-section.is-inactive {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-18px);
 }
 
-/* ------------------------------
-   LAYOUT
------------------------------- */
+/* ==========================================================
+   MODEL TABS (HORIZONTAL)
+   ========================================================== */
+.model-tabs {
+  border-bottom: 1px solid #333;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 10px auto 18px auto;
+  max-width: 900px;
+  padding-bottom: 6px;
+}
 
-.lx-wrap {
-  margin: 0 auto;
-  max-width: var(--lx-wrap);
-  padding: 20px;
+.model-tab {
+  border-bottom: 3px solid transparent;
+  color: #d1d5db;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 10px 16px;
+  text-transform: uppercase;
+  transition: color .25s ease, border-color .25s ease;
+}
+
+.model-tab.active {
+  border-color: #ffb300;
+  color: #ffb300;
+}
+
+/* ==========================================================
+   MODEL CONTENT
+   ========================================================== */
+#modelTour {
+  color: #ffffff;
+  margin: 25px auto;
+  max-width: 900px;
+  padding: 0 20px;
+}
+
+.model-slide {
+  animation: fadeIn .35s ease;
+  display: none;
+}
+
+.model-slide.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.model-items {
+  margin: 20px 0;
   text-align: left;
 }
 
-.lx-hero {
-  border: 1px solid var(--lx-stroke);
-  border-radius: 18px;
-  padding: 18px 18px 14px;
-  position: relative;
-}
-
-.lx-hero h1 {
-  color: var(--lx-gold);
-  font-size: 44px;
-  font-weight: 800;
-  margin: 0 0 6px 0;
-}
-
-.lx-hero h2 {
-  color: var(--lx-ink);
+.model-item {
   font-size: 20px;
-  font-weight: 500;
-  margin: 0;
+  line-height: 1.45;
+  margin-bottom: 14px;
 }
 
-.lx-nav {
+.model-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.model-subtitle {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.model-next-btn {
+  background: linear-gradient(135deg, #ffb347, #ff7b00);
+  border: none;
+  border-radius: 10px;
+  color: #111;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 12px 26px;
+  transition: .2s ease;
+}
+
+.model-next-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.model-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 14px 0 0 0;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
 }
 
-.lx-nav a {
-  background: var(--lx-card);
-  border: 1px solid var(--lx-stroke);
+/* ==========================================================
+   HERO CIRCLE
+   ========================================================== */
+.hero-circle {
+  align-items: center;
+  background: #111;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 360px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 26px;
+  transition: transform .25s ease, box-shadow .25s ease;
+  width: 360px;
+}
+
+.hero-circle:hover {
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+}
+
+/* ==========================================================
+   CTA BUTTON - item-btn-cta
+   ========================================================== */
+.item-btn-cta {
+  align-items: center;
+  background: linear-gradient(135deg, #ffb347, #ff7b00);
+  border: none;
   border-radius: 999px;
-  color: var(--lx-ink);
-  display: inline-block;
-  font-size: 14px;
-  padding: 9px 14px;
-}
-
-.lx-nav a[aria-current="page"] {
-  border-color: rgba(255, 179, 0, 0.55);
-  color: var(--lx-gold);
-}
-
-.lx-panel {
-  border: 1px solid var(--lx-stroke);
-  border-radius: 18px;
-  margin-top: 16px;
-  padding: 18px;
-}
-
-.lx-panel h3 {
-  color: var(--lx-ink);
-  font-size: 18px;
+  color: #111 !important;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 15px;
   font-weight: 700;
-  margin: 0 0 10px 0;
+  gap: 6px;
+  justify-content: center;
+  padding: 10px 22px;
+  text-transform: uppercase;
+  transition: .2s ease;
 }
 
-.lx-panel p {
-  color: var(--lx-muted);
-  margin: 0 0 10px 0;
+.item-btn-cta:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
 }
 
-.lx-table {
+/* ==========================================================
+   TEMPLATE MAP (VERTICAL TABS)
+   ========================================================== */
+#templateFrame {
+  color: #ffffff;
+  margin: 0 auto 20px auto !important;
+  max-width: 1000px;
+  padding: 0 20px 20px 20px;
+}
+
+.template-layout {
+  align-items: flex-start;
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.template-tabs {
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 220px;
+  padding-right: 10px;
+  width: 260px;
+}
+
+/* ==========================================================
+   RESELLER MODULES TABLE
+   ========================================================== */
+.va-modules-table {
   border-collapse: collapse;
   width: 100%;
 }
 
-.lx-table td,
-.lx-table th {
-  border-bottom: 1px solid var(--lx-stroke);
-  padding: 10px 8px;
+.va-modules-table td,
+.va-modules-table th {
+  border: 1px solid #333;
+  padding: 12px 14px;
   text-align: left;
-  vertical-align: top;
 }
 
-.lx-table th {
-  color: var(--lx-muted);
-  font-size: 13px;
+.va-modules-table th {
+  color: #ffb300;
+  font-weight: 800;
+}
+
+.va-modules-table-wrap {
+  margin-top: 18px;
+  overflow-x: auto;
+}
+
+.va-modules-table a {
+  color: #ffb300;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-decoration: underline;
 }
 
-.lx-table td {
-  color: var(--lx-ink);
-  font-size: 14px;
-}
-
-@media (max-width: 720px) {
-  .lx-hero h1 {
-    font-size: 34px;
-  }
-}
+/* ==========================================================
+   DOCUMENT GENERATORS (MG)
+   Moved from inline <style> to global CSS
+   ========================================================== */
+/* Paste your full MG CSS block here (the one that was inline).
+   If you want, paste your current lentax.css file contents and I will merge it
+   with the MG block and keep it consistent. */
