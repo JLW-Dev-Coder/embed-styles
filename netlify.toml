@@ -1,1 +1,7 @@
-netlify.toml
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "no-cache"
